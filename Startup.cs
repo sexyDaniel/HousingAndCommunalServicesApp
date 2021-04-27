@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using GKU_App.Models;
+using GKU_App.DataBaseContext;
 
 namespace GKU_App
 {
