@@ -12,13 +12,13 @@ namespace GKU_App.Models
         public int PersonalAccount { get; set; }
         [Required]
         [MaxLength(30)]
-        public int FirstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
         [MaxLength(30)]
-        public int LastName { get; set; }
+        public string LastName { get; set; }
         [MaxLength(30)]
         [Required]
-        public int Patronymic { get; set; }
+        public string Patronymic { get; set; }
         public List<Property> Properties { get; set; } = new List<Property>();
     }
 }
