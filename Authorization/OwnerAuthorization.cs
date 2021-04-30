@@ -18,22 +18,12 @@ namespace GKU_App.Authorization
 
         public Owner GetOwner(int id)
         {
-            var owner = dbContext.Owners.FirstOrDefault(p => p.PersonalAccount == id);
-            return owner;
+            return dbContext.Owners.FirstOrDefault(p => p.PersonalAccount == id);
         }
 
         public bool HaveOwner(int id)
         {
-            var owner = dbContext.Owners.FirstOrDefault(p => p.PersonalAccount == id);
-
-            if(owner != null)
-            { 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return dbContext.Owners.Any(x => x.PersonalAccount == id);
         }
     }
 }
