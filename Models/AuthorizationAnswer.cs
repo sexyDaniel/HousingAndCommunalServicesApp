@@ -7,13 +7,10 @@ namespace GKU_App.Models
 {
     public class AuthorizationAnswer
     {
-        public bool Answer { get; private set; }
-        
         public Owner Owner { get; private set; }
 
-        public AuthorizationAnswer(bool answer, Owner owner)
+        public AuthorizationAnswer(Owner owner)
         {
-            Answer = answer;
             Owner = owner;
         }
     }
