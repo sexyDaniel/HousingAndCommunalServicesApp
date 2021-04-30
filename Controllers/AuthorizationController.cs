@@ -24,11 +24,12 @@ namespace GKU_App.Controllers
         public AuthorizationAnswer GetOwner(AuthorizationRequestData data)
         {
             AuthorizationAnswer answer;
-            
+
             if(ownerAuthorization.HaveOwner(data.Id))
             {
                 Owner owner = ownerAuthorization.GetOwner(data.Id);
                 answer = new AuthorizationAnswer(true, owner);
+                HttpContext.Response.Cookies.Append("currentOwner", owner.PersonalAccount.ToString());
             }
             else
             {
