@@ -15,6 +15,9 @@ namespace GKU_App.Models
         public Building Building { get; set; }
 
         [Required]
+        public double Value { get; set; }
+
+        [Required]
         public DateTime BeginDate { get; set; }
 
         [Required]
