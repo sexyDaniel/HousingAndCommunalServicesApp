@@ -24,7 +24,16 @@ namespace GKU_App.Controllers
         [HttpGet]
         public ServiceCompany[] GetAllServiceCompanies()
         {
-            return dbContext.ServiceCompanies.ToArray();
+            ServiceCompany[] organizations = dbContext.ServiceCompanies.ToArray();
+            for(int i = 0; i < organizations.Length; i++)
+            {
+                Service current = dbContext.Services.FirstOrDefault(p => p.ServiceId == organizations[i].ServiceId);
+                organizations[i].Service = new Service();
+                organizations[i].Service.Name = current.Name;
+                organizations[i].Service.ServiceId = current.ServiceId;
+            }
+
+            return organizations;
         }
     }
 }
