@@ -8,6 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GKU_App.DataBaseContext;
 using GKU_App.Authorization;
+using GKU_App.Services.Interfaces;
+using GKU_App.Services;
+using GKU_App.Models.Repositories;
+using GKU_App.Models.Repositories.Interfaces;
 
 namespace GKU_App
 {
@@ -26,6 +30,8 @@ namespace GKU_App
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=123456789"));
             services.AddControllersWithViews();
 
+            services.AddTransient<ICalculationService, CalcService>();
+            services.AddTransient<ITariffRepository, TariffRepository>();
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
 
             // In production, the React files will be served from this directory
@@ -68,6 +74,7 @@ namespace GKU_App
 
                 if (env.IsDevelopment())
                 {
+                    spa.UseReactDevelopmentServer("start");
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
                 }
             });
