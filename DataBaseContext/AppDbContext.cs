@@ -21,7 +21,7 @@ namespace GKU_App.DataBaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Charge>().HasKey(c => new { c.PropertyId, c.ServiceId });
+            //modelBuilder.Entity<Charge>().HasKey(c => new { c.PropertyId, c.ServiceId });
             modelBuilder.Entity<Tariff>().HasKey(t => new { t.BuildingId, t.ServiceId });
             modelBuilder.Entity<Owner>(entity =>
             {
