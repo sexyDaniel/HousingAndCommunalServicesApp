@@ -1,12 +1,18 @@
 ﻿import React from 'react';
 
 export default class Charges extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: JSON.parse(localStorage.getItem('owner'))
+        }
+    }
     render() {
+        console.log(this.state.data)
         return <div>
             <h1>Начисления</h1>
             <div className="owner-info">
-                <h4>Собственник: Иванов Иван Петрович</h4>
-                <h4>Проживает: г.Москва ул.Горького 25, д.15</h4>
+                <h4>Собственник:{this.state.data.owner.lastName} {this.state.data.owner.firstName} {this.state.data.owner.patronymic}</h4>
             </div>
             <div className="row charge-tabs">
                 <div className="col-9 charge-tables">
