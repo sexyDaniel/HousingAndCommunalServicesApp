@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
+
 namespace GKU_App.Authorization
 {
     public class CokkieSaver : IDataSaver
@@ -27,7 +28,7 @@ namespace GKU_App.Authorization
 
         public bool TryGetValue(string key, out string value)
         {
-            if(context.Request.Cookies.TryGetValue(key, out value))
+            if (context.Request.Cookies.TryGetValue(key, out value))
             {
                 return true;
             }

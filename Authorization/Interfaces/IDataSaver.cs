@@ -9,6 +9,8 @@ namespace GKU_App.Authorization
     {
         public void Save(string key, string value);
 
+        public void Delete(string key);
+
         public bool TryGetValue(string key, out string value);
     }
 }
