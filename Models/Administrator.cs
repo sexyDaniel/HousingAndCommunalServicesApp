@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GKU_App.Models
 {
-    public class Admin
+    public class Administrator
     {
         [Key]
         public string Login { get; set; }

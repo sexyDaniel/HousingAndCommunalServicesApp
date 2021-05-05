@@ -9,6 +9,7 @@ namespace GKU_App.Models.Responses
     {
         public List<string> Errors { get; set; }
         public bool IsSuccessfull => Errors.Count == 0;
-        public string Data { get; set; }
+        public string Key { get; set; }
+        public string Login { get; set; }
     }
 }

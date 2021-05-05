@@ -12,7 +12,7 @@ namespace GKU_App.DataBaseContext
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Charge> Charges { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Administrator> Admins { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Property> Properties { get; set; }

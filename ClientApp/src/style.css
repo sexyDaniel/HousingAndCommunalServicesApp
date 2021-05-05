@@ -227,3 +227,7 @@ span {
         padding-right: 100px !important;
         margin-top: 100px !important;
     }
+
+.exit {
+    text-align: center;
+}

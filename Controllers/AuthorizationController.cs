@@ -8,6 +8,7 @@ using GKU_App.Authorization;
 using GKU_App.Models;
 using GKU_App.Models.Responses;
 using GKU_App.Models.Requests;
+using GKU_App.Services.Interfaces;
 
 namespace GKU_App.Controllers
 {
@@ -16,10 +17,11 @@ namespace GKU_App.Controllers
     public class AuthorizationController : Controller
     {
         private IOwnerAuthorization ownerAuthorization;
-
-        public AuthorizationController(IOwnerAuthorization ownerAuthorization)
+        private IAdminService adminService;
+        public AuthorizationController(IOwnerAuthorization ownerAuthorization,IAdminService adminService)
         {
             this.ownerAuthorization = ownerAuthorization;
+            this.adminService = adminService;
         }
 
         [HttpPost]
@@ -44,9 +46,19 @@ namespace GKU_App.Controllers
         [HttpPost]
         public AdminAuthResponse AdminAuthorization(AdminAuthRequest request)
         {
+            var response = adminService.Auth(request);
+            if (response.IsSuccessfull) 
+            {
+                HttpContext.Response.Cookies.Append("Login", response.Login);
+                HttpContext.Response.Cookies.Append("Key", response.Key);
+            }
+            return adminService.Auth(request);
+        }
 
-
-            return null;
+        [HttpPost]
+        public void Exit()
+        {
+            HttpContext.Response.Cookies.Delete("currentOwner");
         }
     }
 }

@@ -9,6 +9,7 @@ import Calc from './components/calc.js';
 import PersonalNumber from './components/personalNumber.js';
 import Companys from './components/companys.js';
 import AdminAutn from './components/adminAuth.js';
+import DownloadCharges from './components/downloadCharges.js'
 
 export default class App extends React.Component {
     constructor(props) {
@@ -27,13 +28,14 @@ export default class App extends React.Component {
             owner:""
         };
         this.isAuth = Cookies.get('currentOwner')
+        this.isAdmin = Cookies.get('Login')
     }
 
     render() {
         console.log(this.isAuth)
         return <Router>
             <div className="sidebar">
-                <Nav auth={this.isAuth}/>
+                <Nav admin={this.isAdmin} auth={this.isAuth}/>
             </div>
             <div className="main">
                 <Route exact path="/" component={Home} />
@@ -42,6 +44,7 @@ export default class App extends React.Component {
                 <Route path="/calc" component={() => <Calc values={this.state} />} />
                 <Route path="/companys" component={Companys} />
                 <Route path="/admin/auth" component={AdminAutn} />
+                <Route path="/admin/addCharges" component={DownloadCharges} />
             </div>
         </Router>
     }
