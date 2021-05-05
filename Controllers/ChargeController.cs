@@ -13,8 +13,8 @@ namespace GKU_App.Controllers
     [Route("[controller]/[action]")]
     public class ChargeController : Controller
     {
-        private IChargeCalculation ownerCharge;
-        public ChargeController(IChargeCalculation ownerCharge)
+        private IChargeRepository ownerCharge;
+        public ChargeController(IChargeRepository ownerCharge)
         {
             this.ownerCharge = ownerCharge;
         }

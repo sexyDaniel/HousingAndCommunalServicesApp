@@ -1,0 +1,222 @@
+.app {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    background-color: #161732;
+    width: 300px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+ul {
+    margin-top: 30px !important;
+    padding-left: 10px !important;
+    padding-right: 10px;
+}
+
+.sidebar .nav-logo {
+    padding: 25px 20px 25px 20px;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 80px;
+    color: aliceblue;
+    background-color: #0000004a;
+}
+
+
+.main {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.link {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    height: 3rem;
+    transition: 0.3s;
+}
+
+    .link:hover {
+        /* background-color: rgba(255,255,255,0.1); */
+        color: white;
+        transition: 0.3s;
+        padding: 18px;
+    }
+
+.active {
+    background-color: #004f95;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.form {
+    text-align: center;
+    margin: 200px auto;
+    width: 500px;
+    padding: 50px 20px 60px 20px;
+    border-radius: 7px;
+    background-color: #1617320f;
+}
+
+    .form form input {
+        text-align: center;
+        margin-top: 30px;
+        height: 50px;
+        font-size: 25px !important;
+    }
+
+    .form form {
+        padding: 0 70px 0 70px;
+    }
+
+        .form form button {
+            margin-top: 30px;
+            height: 40px;
+            font-size: 18px !important;
+            width: 100%;
+        }
+
+table {
+    background-color: #004f95 !important;
+}
+
+.charge-info {
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+}
+
+h6 {
+    text-align: right;
+}
+
+.row {
+    margin-right: 0 !important;
+}
+
+.charge-form {
+    width: 100%;
+    padding: 0;
+}
+
+    .charge-form input {
+        text-align: center;
+        margin: 0;
+        height: 50px;
+        font-size: 25px !important;
+        width: 260px;
+    }
+
+    .charge-form button {
+        text-align: center;
+        margin-top: 30px;
+        height: 50px;
+        width: 260px;
+    }
+
+span {
+    font-size: 30px;
+}
+
+.calculation {
+    font-size: 15px;
+    margin-top: 30px !important;
+}
+
+.tariff {
+    font-size: 13.5px;
+}
+
+.calculation button {
+    margin-top: 10px;
+}
+
+.calculation .calc-tab {
+    margin-bottom: 30px;
+}
+
+
+.calculation .row {
+    margin-bottom: 20px;
+}
+
+.equal {
+    text-align: center;
+}
+
+.calculation form button {
+    display: block;
+}
+
+
+.calc-tab input {
+    width: 200px !important;
+    display: inline !important;
+}
+
+.calc-tabs .calc-tab:nth-child(4) input {
+    width: 144px !important;
+}
+
+span {
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.calc-tabs {
+    padding-top: 10px;
+    overflow-y: scroll;
+    max-height: 90vh;
+}
+
+.charge-tables {
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+.charge-table {
+    margin-bottom: 30px;
+}
+
+.company_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .company_list li {
+        margin-top: 20px;
+        margin-bottom: 50px;
+        margin-right: 20px;
+        width: 30%;
+        border-radius: 5px;
+        list-style-type: none;
+        padding: 30px 20px 30px 20px;
+    }
+
+.company-info {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.main-info {
+    font-size: 20px;
+    list-style-type: none;
+}
+
+    .main-info ul {
+        padding-left: 100px !important;
+        padding-right: 100px !important;
+        margin-top: 100px !important;
+    }

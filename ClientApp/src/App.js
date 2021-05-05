@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
-=======
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -15,20 +7,43 @@ import Charges from './components/charges.js';
 import Calc from './components/calc.js';
 import PersonalNumber from './components/personalNumber.js';
 import Companys from './components/companys.js';
->>>>>>> 79b540f... GetChargesByDate and ChargeId-Migration
 
-import './custom.css'
-
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-      </Layout>
-    );
-  }
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tariff: "",
+            volume: "",
+            res: ""
+        };
+        this.press = this.press.bind(this);
+        this.count = 67
+        this.onTariffChange = this.onTariffChange.bind(this)
+        this.onVolumeChange = this.onVolumeChange.bind(this)
+    }
+    onTariffChange(e) {
+        this.setState({ tariff: e.target.value });
+    }
+    onVolumeChange(e) {
+        this.setState({ volume: e.target.value });
+    }
+    press() {
+        var res = this.state.tariff * this.state.volume
+        this.setState({ res: res });
+    }
+    render() {
+        console.log(this.count)
+        return <Router>
+            <div className="sidebar">
+                <Nav />
+            </div>
+            <div className="main">
+                <Route exact path="/" component={Home} />
+                <Route path="/personalNumber" component={PersonalNumber} />
+                <Route path="/charges" component={Charges} />
+                <Route path="/calc" component={() => <Calc values={this.state} />} />
+                <Route path="/companys" component={Companys} />
+            </div>
+        </Router>
+    }
 }

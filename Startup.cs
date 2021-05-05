@@ -29,7 +29,7 @@ namespace GKU_App
             services.AddControllersWithViews();
 
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
-            services.AddTransient<IChargeCalculation, ChargeCalculation>();
+            services.AddTransient<IChargeRepository, ChargeRepository>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

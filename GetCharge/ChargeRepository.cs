@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GKU_App.GetCharge
 {
-    public class ChargeCalculation : IChargeCalculation
+    public class ChargeRepository : IChargeRepository
     {
         private AppDbContext dbContext;
 
-        public ChargeCalculation(AppDbContext dbContext)
+        public ChargeRepository(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
