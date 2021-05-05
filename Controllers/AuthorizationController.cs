@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using GKU_App.Authorization;
 using GKU_App.Models;
+using GKU_App.Models.Responses;
+using GKU_App.Models.Requests;
 
 namespace GKU_App.Controllers
 {
@@ -37,6 +39,14 @@ namespace GKU_App.Controllers
             }
 
             return answer;
+        }
+
+        [HttpPost]
+        public AdminAuthResponse AdminAuthorization(AdminAuthRequest request)
+        {
+
+
+            return null;
         }
     }
 }

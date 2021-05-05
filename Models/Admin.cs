@@ -10,7 +10,7 @@ namespace GKU_App.Models
     {
         [Key]
         public string Login { get; set; }
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
         public string Salt { get; set; }
     }
 }
