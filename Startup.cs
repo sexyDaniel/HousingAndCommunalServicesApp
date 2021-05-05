@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GKU_App.DataBaseContext;
 using GKU_App.Authorization;
+using GKU_App.GetCharge.Interfaces;
+using GKU_App.GetCharge;
 
 namespace GKU_App
 {
@@ -23,10 +25,11 @@ namespace GKU_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=pudgehook"));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgresGKU;Username=postgres;Password=j6mswd23455963"));
             services.AddControllersWithViews();
 
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
+            services.AddTransient<IChargeRepository, ChargeRepository>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
