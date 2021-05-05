@@ -10,6 +10,7 @@ using GKU_App.DataBaseContext;
 using GKU_App.Authorization;
 using GKU_App.GetCharge.Interfaces;
 using GKU_App.GetCharge;
+using GKU_App.Admin;
 
 namespace GKU_App
 {
@@ -26,9 +27,11 @@ namespace GKU_App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgresGKU;Username=postgres;Password=j6mswd23455963"));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=pudgehook"));
             services.AddControllersWithViews();
 
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
+            services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
 
             // In production, the React files will be served from this directory
