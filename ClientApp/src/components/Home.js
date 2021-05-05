@@ -1,16 +1,16 @@
-import React from 'react';
+п»їimport React from 'react';
 
 export default class Home extends React.Component {
     render() {
         return <div>
             <div className="main-info">
-                <h1>Система просмотра ЖКУ</h1>
+                <h1>РЎРёСЃС‚РµРјР° РїСЂРѕСЃРјРѕС‚СЂР° Р–РљРЈ</h1>
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-primary"><h3>Коротко о системе</h3></li>
-                    <li class="list-group-item">Просмотр всех начислений за выбранный период</li>
-                    <li class="list-group-item">Возможность перерасчета в калькуляторе</li>
-                    <li class="list-group-item">Доступен список всех обслуживающих компаний вашего дома</li>
-                    <li class="list-group-item"><span class="badge bg-warning text-dark">Возможно</span>: Графики для просмотра динамики начислений</li>
+                    <li class="list-group-item list-group-item-primary"><h3>РљРѕСЂРѕС‚РєРѕ Рѕ СЃРёСЃС‚РµРјРµ</h3></li>
+                    <li class="list-group-item">РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… РЅР°С‡РёСЃР»РµРЅРёР№ Р·Р° РІС‹Р±СЂР°РЅРЅС‹Р№ РїРµСЂРёРѕРґ</li>
+                    <li class="list-group-item">Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїРµСЂРµСЂР°СЃС‡РµС‚Р° РІ РєР°Р»СЊРєСѓР»СЏС‚РѕСЂРµ</li>
+                    <li class="list-group-item">Р”РѕСЃС‚СѓРїРµРЅ СЃРїРёСЃРѕРє РІСЃРµС… РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёС… РєРѕРјРїР°РЅРёР№ РІР°С€РµРіРѕ РґРѕРјР°</li>
+                    <li class="list-group-item"><span class="badge bg-warning text-dark">Р’РѕР·РјРѕР¶РЅРѕ</span>: Р“СЂР°С„РёРєРё РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° РґРёРЅР°РјРёРєРё РЅР°С‡РёСЃР»РµРЅРёР№</li>
                 </ul>
             </div>
         </div>;

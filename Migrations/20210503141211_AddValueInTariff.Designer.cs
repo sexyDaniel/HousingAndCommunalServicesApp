@@ -3,15 +3,17 @@ using System;
 using GKU_App.DataBaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GKU_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210503141211_AddValueInTariff")]
+    partial class AddValueInTariff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,26 +53,19 @@ namespace GKU_App.Migrations
 
             modelBuilder.Entity("GKU_App.Models.Charge", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("ChargeDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<int>("PropertyId")
                         .HasColumnType("integer");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("ChargeDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<double>("Volume")
                         .HasColumnType("double precision");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyId");
+                    b.HasKey("PropertyId", "ServiceId");
 
                     b.HasIndex("ServiceId");
 
