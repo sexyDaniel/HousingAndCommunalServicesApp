@@ -1,22 +1,22 @@
-import React from 'react';
+п»їimport React from 'react';
 import { Link, BrowserRouter, NavLink } from 'react-router-dom';
 
 export default class Nav extends React.Component {
     render() {
         return <div>
-            <Link to="/"><div className="nav-logo">ЖКУ</div></Link>
+            <Link to="/"><div className="nav-logo">Р–РљРЈ</div></Link>
             <ul className="nav flex-column">
                 <li className="nav-item">
-                    <NavLink exact to="/personalNumber" className="link" activeClassName="active">Ввести лицевой счет</NavLink>
+                    <NavLink exact to="/personalNumber" className="link" activeClassName="active">Р’РІРµСЃС‚Рё Р»РёС†РµРІРѕР№ СЃС‡РµС‚</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="link" to="/charges" activeClassName="active">Начисления</NavLink>
+                    <NavLink className="link" to="/charges" activeClassName="active">РќР°С‡РёСЃР»РµРЅРёСЏ</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="link" to="/calc" activeClassName="active">Калькулятор</NavLink>
+                    <NavLink className="link" to="/calc" activeClassName="active">РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="link" to="/companys" activeClassName="active">Обслуживающие организации</NavLink>
+                    <NavLink className="link" to="/companys" activeClassName="active">РћР±СЃР»СѓР¶РёРІР°СЋС‰РёРµ РѕСЂРіР°РЅРёР·Р°С†РёРё</NavLink>
                 </li>
             </ul>
         </div>;

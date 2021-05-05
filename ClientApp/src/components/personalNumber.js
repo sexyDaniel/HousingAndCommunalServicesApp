@@ -1,16 +1,16 @@
-import React from "react"
+п»їimport React from "react"
 
 export default class PersonalNumber extends React.Component {
     render() {
         return <div>
             <div className="form shadow">
-                <h2>Введите лицевой счет</h2>
+                <h2>Р’РІРµРґРёС‚Рµ Р»РёС†РµРІРѕР№ СЃС‡РµС‚</h2>
                 <form>
-                    <input maxLength="9" className="form-control" placeholder="Лицевой счет" />
+                    <input maxLength="9" className="form-control" placeholder="Р›РёС†РµРІРѕР№ СЃС‡РµС‚" />
                     <div id="passwordHelpBlock" className="form-text">
-                        Ваш лицевой счет это девятизначный номер
+                        Р’Р°С€ Р»РёС†РµРІРѕР№ СЃС‡РµС‚ СЌС‚Рѕ РґРµРІСЏС‚РёР·РЅР°С‡РЅС‹Р№ РЅРѕРјРµСЂ
                             </div>
-                    <button className="btn btn-primary">Посмотреть</button>
+                    <button className="btn btn-primary">РџРѕСЃРјРѕС‚СЂРµС‚СЊ</button>
                 </form>
             </div>
         </div>
