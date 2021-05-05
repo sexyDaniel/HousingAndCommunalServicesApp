@@ -29,9 +29,11 @@ namespace GKU_App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgresGKU;Username=postgres;Password=j6mswd23455963"));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=pudgehook"));
             services.AddControllersWithViews();
 
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
+            services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
             services.AddTransient<IParseCharge, ParseCharge>();
 

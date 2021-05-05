@@ -38,5 +38,11 @@ namespace GKU_App.Controllers
 
             return answer;
         }
+
+        [HttpGet]
+        public void Exit()
+        {
+            HttpContext.Response.Cookies.Delete("currentOwner");
+        }
     }
 }
