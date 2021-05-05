@@ -10,6 +10,8 @@ using GKU_App.DataBaseContext;
 using GKU_App.Authorization;
 using GKU_App.GetCharge.Interfaces;
 using GKU_App.GetCharge;
+using GKU_App.CSVParsing.Interfaces;
+using GKU_App.CSVParsing;
 
 namespace GKU_App
 {
@@ -30,6 +32,7 @@ namespace GKU_App
 
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
+            services.AddTransient<IParseCharge, ParseCharge>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
