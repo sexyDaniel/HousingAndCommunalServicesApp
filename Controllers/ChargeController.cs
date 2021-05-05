@@ -21,9 +21,9 @@ namespace GKU_App.Controllers
 
 
         [HttpPost]
-        public List <Charge> GetChargesByDate(ChargeRequestData data)
+        public Dictionary<Charge, Tariff> GetChargesByDate(ChargeRequestData data)
         {
-            List <Charge> charges;
+            Dictionary<Charge, Tariff> charges;
 
             if (HttpContext.Request.Cookies.TryGetValue("currentOwner", out string currentOwner))
             {

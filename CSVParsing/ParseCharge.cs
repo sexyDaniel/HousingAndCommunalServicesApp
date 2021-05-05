@@ -36,9 +36,13 @@ namespace GKU_App.CSVParsing
                         charge.ChargeDate = Convert.ToDateTime(values[2]);
                         charge.Volume = Convert.ToDouble(values[3]);
 
-                        dbContext.Charges.Add(charge);
-                        dbContext.SaveChanges();
-
+                        if (!dbContext.Charges.Any(c => c.ServiceId == charge.ServiceId &&
+                        c.PropertyId == charge.PropertyId && c.ChargeDate == charge.ChargeDate &&
+                        c.Volume == charge.Volume))
+                        {
+                            dbContext.Charges.Add(charge);
+                            dbContext.SaveChanges();
+                        }
                     }
                 }
             }
