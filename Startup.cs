@@ -12,6 +12,8 @@ using GKU_App.Services.Interfaces;
 using GKU_App.Services;
 using GKU_App.Models.Repositories;
 using GKU_App.Models.Repositories.Interfaces;
+using GKU_App.GetCharge.Interfaces;
+using GKU_App.GetCharge;
 
 namespace GKU_App
 {
@@ -33,6 +35,7 @@ namespace GKU_App
             services.AddTransient<ICalculationService, CalcService>();
             services.AddTransient<ITariffRepository, TariffRepository>();
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
+            services.AddTransient<IChargeRepository, ChargeRepository>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
