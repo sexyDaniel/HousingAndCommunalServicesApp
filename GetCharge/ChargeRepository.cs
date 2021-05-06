@@ -31,7 +31,6 @@ namespace GKU_App.GetCharge
 
              var charges = dbContext.Charges
                 .Include(p => p.Property)
-                .Include(p => p.Property)
                 .ThenInclude(c => c.Building)
                 .ThenInclude(c => c.City)
                 .Include(p => p.Service)
