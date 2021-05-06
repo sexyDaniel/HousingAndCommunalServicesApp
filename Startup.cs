@@ -41,6 +41,7 @@ namespace GKU_App
             services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
             services.AddTransient<IParseCharge, ParseCharge>();
+            services.AddTransient<IServiceCompanyRepository, ServiceCompanyRepository>();
 
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
             Newtonsoft.Json.ReferenceLoopHandling.Ignore);

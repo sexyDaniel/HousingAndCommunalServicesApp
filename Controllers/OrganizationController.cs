@@ -13,7 +13,7 @@ namespace GKU_App.Controllers
     {
         private IServiceCompanyRepository serviceCompany;
 
-        public OrganizationController(ServiceCompanyRepository serviceCompany)
+        public OrganizationController(IServiceCompanyRepository serviceCompany)
         { 
             this.serviceCompany = serviceCompany;
         }
