@@ -1,6 +1,5 @@
 ﻿using GKU_App.DataBaseContext;
 using GKU_App.Exceptions;
-using GKU_App.GetCharge;
 using GKU_App.GetCharge.Interfaces;
 using GKU_App.Logger;
 using GKU_App.Models;
@@ -17,11 +16,9 @@ namespace GKU_App.Controllers
     public class ChargeController : Controller
     {
         private IChargeRepository ownerCharge;
-        private AppDbContext dbContext;
         public ChargeController(IChargeRepository ownerCharge, AppDbContext dbContext)
         {
             this.ownerCharge = ownerCharge;
-            this.dbContext = dbContext;
         }
 
 
