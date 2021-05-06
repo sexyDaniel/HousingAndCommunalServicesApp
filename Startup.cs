@@ -14,9 +14,7 @@ using GKU_App.Models.Repositories;
 using GKU_App.Models.Repositories.Interfaces;
 using GKU_App.GetCharge.Interfaces;
 using GKU_App.GetCharge;
-using GKU_App.GetCharge.Interfaces;
-using GKU_App.GetCharge;
-using GKU_App.Admin;
+using GKU_App.AdminRepositories;
 
 namespace GKU_App
 {
@@ -40,6 +38,9 @@ namespace GKU_App
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
             services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
+
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling 
+                                                        = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

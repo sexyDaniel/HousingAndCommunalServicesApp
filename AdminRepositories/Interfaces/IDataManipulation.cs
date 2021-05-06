@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GKU_App.Models;
 
-namespace GKU_App.Admin
+namespace GKU_App.AdminRepositories
 {
     public interface IDataManipulation
     {
