@@ -1,5 +1,6 @@
 ﻿using GKU_App.CSVParsing.Interfaces;
 using GKU_App.DataBaseContext;
+using GKU_App.Logger;
 using GKU_App.Models;
 using Npgsql;
 using System;
@@ -48,8 +49,8 @@ namespace GKU_App.CSVParsing
             }
             catch (Exception e)
             {
-                throw new Exception($"Error: {e}");
-                
+                Log log = new Log();
+                log.ErrorUnique("Error reading CSV file.", e);
             }
         }
     }

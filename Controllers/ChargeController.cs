@@ -1,5 +1,8 @@
-﻿using GKU_App.GetCharge;
+﻿using GKU_App.DataBaseContext;
+using GKU_App.Exceptions;
+using GKU_App.GetCharge;
 using GKU_App.GetCharge.Interfaces;
+using GKU_App.Logger;
 using GKU_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,28 +17,37 @@ namespace GKU_App.Controllers
     public class ChargeController : Controller
     {
         private IChargeRepository ownerCharge;
-        public ChargeController(IChargeRepository ownerCharge)
+        private AppDbContext dbContext;
+        public ChargeController(IChargeRepository ownerCharge, AppDbContext dbContext)
         {
             this.ownerCharge = ownerCharge;
+            this.dbContext = dbContext;
         }
 
 
         [HttpPost]
-        public Dictionary<Charge, Tariff> GetChargesByDate(ChargeRequestData data)
+        public List<ChargeAnswer> GetChargesByDate(ChargeRequestData data)
         {
             Dictionary<Charge, Tariff> charges;
+            List<ChargeAnswer> answer = new List<ChargeAnswer>();
+            Log log = new Log();
 
             if (HttpContext.Request.Cookies.TryGetValue("currentOwner", out string currentOwner))
             {
                 Property property = ownerCharge.GetProperty(Convert.ToInt32(currentOwner));
                 charges = ownerCharge.GetCharge(property.PropertyId, data.StartDate, data.EndDate);
+                foreach (KeyValuePair<Charge, Tariff> keyValue in charges)
+                {
+                    answer.Add(new ChargeAnswer(keyValue.Key, keyValue.Value));
+                }
             }
             else
             {
-                charges = null;
+                log.Error(new CookieEmptyException("User authorization failed! Unable to send request to server."));
+                answer = null;
             }
 
-            return charges;
+            return answer;
         }
     }
 }
