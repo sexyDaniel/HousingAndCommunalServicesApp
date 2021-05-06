@@ -37,6 +37,7 @@ namespace GKU_App
             services.AddTransient<IChargeRepository, ChargeRepository>();
             services.AddTransient<IParseCharge, ParseCharge>();
 
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
