@@ -1,12 +1,14 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Nav from './components/nav.js';
 import Home from './components/Home.js';
 import Charges from './components/charges.js';
 import Calc from './components/calc.js';
 import PersonalNumber from './components/personalNumber.js';
 import Companys from './components/companys.js';
+import AdminAutn from './components/adminAuth.js';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -14,28 +16,24 @@ export default class App extends React.Component {
         this.state = {
             tariff: "",
             volume: "",
-            res: ""
+            res: "",
+            monthCalc: "",
+            resCalcMonth: "",
+            yearCalc: "",
+            resCalcYear: "",
+            startDate: "",
+            finishDate: "",
+            resPeriod: "",
+            owner:""
         };
-        this.press = this.press.bind(this);
-        this.count = 67
-        this.onTariffChange = this.onTariffChange.bind(this)
-        this.onVolumeChange = this.onVolumeChange.bind(this)
+        this.isAuth = Cookies.get('currentOwner')
     }
-    onTariffChange(e) {
-        this.setState({ tariff: e.target.value });
-    }
-    onVolumeChange(e) {
-        this.setState({ volume: e.target.value });
-    }
-    press() {
-        var res = this.state.tariff * this.state.volume
-        this.setState({ res: res });
-    }
+
     render() {
-        console.log(this.count)
+        console.log(this.isAuth)
         return <Router>
             <div className="sidebar">
-                <Nav />
+                <Nav auth={this.isAuth}/>
             </div>
             <div className="main">
                 <Route exact path="/" component={Home} />
@@ -43,6 +41,7 @@ export default class App extends React.Component {
                 <Route path="/charges" component={Charges} />
                 <Route path="/calc" component={() => <Calc values={this.state} />} />
                 <Route path="/companys" component={Companys} />
+                <Route path="/admin/auth" component={AdminAutn} />
             </div>
         </Router>
     }

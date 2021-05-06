@@ -20,7 +20,10 @@ namespace GKU_App.Models
         public string BuildingNumber { get; set; }
 
         public City City { get; set; }
+
         public int CityId { get; set; }
+
+        public List<ServiceCompany> ServiceCompanies { get; set; } = new List<ServiceCompany>();
 
         public List<Property> Properties { get; set; } = new List<Property>();
     }

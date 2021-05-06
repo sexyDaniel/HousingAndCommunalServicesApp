@@ -1,9 +1,9 @@
 ﻿import React from "react"
 
-export default class PersonalNumber extends React.Component {
+export default class AdminAuth extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { personalNumber:""}
+        this.state = { personalNumber: "" }
         this.post = this.post.bind(this)
         this.onPersinalNumberChange = this.onPersinalNumberChange.bind(this)
     }
@@ -20,7 +20,7 @@ export default class PersonalNumber extends React.Component {
             const response = await fetch('/Authorization/GetOwner', requestOptions);
             const data = await response.json();
             console.log(data)
-            if (data.owner!==null) {
+            if (data.owner !== null) {
                 alert("Добро пожаловать, " + data.owner.firstName + ' ' + data.owner.patronymic)
                 localStorage.setItem('owner', JSON.stringify(data))
                 document.location.href = "/charges"
@@ -35,13 +35,10 @@ export default class PersonalNumber extends React.Component {
     render() {
         return <div>
             <div className="form shadow">
-                <h2>Введите лицевой счет</h2>
-                <form onSubmit={this.post}>
-                    <input onChange={this.onPersinalNumberChange} maxLength="9" className="form-control" placeholder="Лицевой счет" />
-                    <div id="passwordHelpBlock" className="form-text">
-                        Ваш лицевой счет это девятизначный номер
-                            </div>
-                    <button className="btn btn-primary">Посмотреть</button>
+                <form>
+                    <input className="form-control" placeholder="Логин" />
+                    <input type="password" className="form-control" placeholder="Пароль" />
+                    <button className="btn btn-primary">Войти</button>
                 </form>
             </div>
         </div>
