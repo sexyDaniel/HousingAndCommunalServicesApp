@@ -16,7 +16,7 @@ namespace GKU_App.Controllers
     public class ChargeController : Controller
     {
         private IChargeRepository ownerCharge;
-        public ChargeController(IChargeRepository ownerCharge, AppDbContext dbContext)
+        public ChargeController(IChargeRepository ownerCharge)
         {
             this.ownerCharge = ownerCharge;
         }
