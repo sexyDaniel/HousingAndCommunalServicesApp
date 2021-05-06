@@ -39,7 +39,7 @@ namespace GKU_App.Controllers
             return answer;
         }
 
-        [HttpGet]
+        [HttpPost]
         public void Exit()
         {
             HttpContext.Response.Cookies.Delete("currentOwner");
