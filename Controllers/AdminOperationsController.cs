@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GKU_App.Admin;
+using GKU_App.AdminRepositories;
 
 namespace GKU_App.Controllers
 {

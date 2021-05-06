@@ -2,11 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GKU_App.Authorization;
 using GKU_App.Models;
-using GKU_App.DataBaseContext;
+using GKU_App.Models.Repositories;
 
 namespace GKU_App.Controllers
 {
@@ -14,26 +11,28 @@ namespace GKU_App.Controllers
     [Route("[controller]/[action]")]
     public class OrganizationController : Controller
     {
-        private AppDbContext dbContext;
+        private IServiceCompanyRepository serviceCompany;
 
-        public OrganizationController(AppDbContext dbContext)
-        {
-            this.dbContext = dbContext;
+        public OrganizationController(IServiceCompanyRepository serviceCompany)
+        { 
+            this.serviceCompany = serviceCompany;
         }
 
         [HttpGet]
-        public ServiceCompany[] GetAllServiceCompanies()
+        public List<ServiceCompany> GetAllServiceCompanies()
         {
-            ServiceCompany[] organizations = dbContext.ServiceCompanies.ToArray();
-            for(int i = 0; i < organizations.Length; i++)
+            int ownerId= 0;
+            if (HttpContext.Request.Cookies.TryGetValue("currentOwner", out string value))
             {
-                Service current = dbContext.Services.FirstOrDefault(p => p.ServiceId == organizations[i].ServiceId);
-                organizations[i].Service = new Service();
-                organizations[i].Service.Name = current.Name;
-                organizations[i].Service.ServiceId = current.ServiceId;
-            }
+                int.TryParse(value, out ownerId);
 
-            return organizations;
+                return serviceCompany.GetServiceCompanies(ownerId);
+            }
+            else
+            {
+                return null;
+            }
+            
         }
     }
 }

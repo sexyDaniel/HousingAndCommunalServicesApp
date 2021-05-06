@@ -1,4 +1,6 @@
 ﻿using GKU_App.CSVParsing.Interfaces;
+using GKU_App.Exceptions;
+using GKU_App.Logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,6 +38,8 @@ namespace GKU_App.Controllers
             }
             else
             {
+                Log log = new Log();
+                log.Error(new CSVLoadException("Error loading CSV file "));
                 return false;
             }
         }

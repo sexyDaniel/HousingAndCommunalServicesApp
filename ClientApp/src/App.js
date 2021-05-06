@@ -26,12 +26,22 @@ export default class App extends React.Component {
             startDate: "",
             finishDate: "",
             resPeriod: "",
-            owner: ""
+            owner: "",
+            startChargeDate: "",
+            finishChargeDate:""
         };
         this.isAuth = Cookies.get('currentOwner')
         this.isAdmin = Cookies.get('Login')
     }
-
+    async componentDidMount() {
+        var toDay = new Date()
+        var daysCount = 32 - new Date(toDay.getFullYear(), toDay.getMonth(), 32).getDate();
+        var month = toDay.getMonth() + 1
+        var start = toDay.getFullYear() + '-' + 0 + month + '-' + '01'
+        var finish = toDay.getFullYear() + '-' + 0 + month + '-' + daysCount
+        this.setState({ startChargeDate: start })
+        this.setState({ finishChargeDate: finish })
+    }
     render() {
         console.log(this.isAuth)
         let isA = false
@@ -57,7 +67,7 @@ export default class App extends React.Component {
                 <div className="main">
                     <Route exact path="/" component={Home} />
                     <Route path="/personalNumber" component={PersonalNumber} />
-                    <Route path="/charges" component={Charges} />
+                    <Route path="/charges" component={() => <Charges values={this.state} />} />
                     <Route path="/calc" component={() => <Calc values={this.state} />} />
                     <Route path="/companys" component={Companys} />
                     <Route path="/admin/auth" component={AdminAutn} />

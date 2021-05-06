@@ -14,9 +14,9 @@ using GKU_App.Models.Repositories;
 using GKU_App.Models.Repositories.Interfaces;
 using GKU_App.GetCharge.Interfaces;
 using GKU_App.GetCharge;
-using GKU_App.Admin;
 using GKU_App.CSVParsing.Interfaces;
 using GKU_App.CSVParsing;
+using GKU_App.AdminRepositories;
 
 namespace GKU_App
 {
@@ -41,9 +41,11 @@ namespace GKU_App
             services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IChargeRepository, ChargeRepository>();
             services.AddTransient<IAdminService, AdminService>();
-            services.AddTransient<IDataManipulation, AdminDataManipulation>();
             services.AddTransient<IParseCharge, ParseCharge>();
+            services.AddTransient<IServiceCompanyRepository, ServiceCompanyRepository>();
 
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+            Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -84,7 +86,7 @@ namespace GKU_App
 
                 if (env.IsDevelopment())
                 {
-                   // spa.UseReactDevelopmentServer("start");
+                    spa.UseReactDevelopmentServer("start");
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
                 }
             });

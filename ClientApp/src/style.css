@@ -162,7 +162,7 @@ span {
 
 
 .calc-tab input {
-    width: 200px !important;
+    width: 180px !important;
     display: inline !important;
 }
 
@@ -231,3 +231,9 @@ span {
 .exit {
     text-align: center;
 }
+
+.calcCharges {
+    max-height:90vh;
+    overflow:scroll
+}
+

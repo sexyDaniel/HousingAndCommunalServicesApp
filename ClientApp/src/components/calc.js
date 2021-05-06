@@ -15,7 +15,8 @@ export default class Calc extends React.Component {
             startDate: this.props.values.startDate,
             finishDate: this.props.values.finishDate,
             resPeriod: this.props.values.resPeriod,
-            tariffs:[]
+            tariffs: [],
+            charges:[]
         }
 
         this.press = this.press.bind(this);
@@ -50,6 +51,17 @@ export default class Calc extends React.Component {
             const data = await response.json();
             this.setState({ resPeriod: data + ' руб' });
             this.props.values.resPeriod = data + ' руб'
+            const requestOptions1 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    StartDate: this.state.startDate,
+                    EndDate: this.state.finishDate
+                })
+            };
+            const response1 = await fetch('/Charge/GetChargesByDate', requestOptions1);
+            const data1 = await response1.json();
+            this.setState({ charges: data1});
         }
     }
     async componentDidMount() {
@@ -71,6 +83,17 @@ export default class Calc extends React.Component {
             const data = await response.json();
             this.setState({ resCalcYear: data + ' руб' });
             this.props.values.resCalcYear = data + ' руб'
+            const requestOptions1 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    StartDate: this.state.yearCalc+'-'+'01'+'-'+'01',
+                    EndDate: this.state.yearCalc + '-' + '12' + '-' + '31'
+                })
+            };
+            const response1 = await fetch('/Charge/GetChargesByDate', requestOptions1);
+            const data1 = await response1.json();
+            this.setState({ charges: data1 });
         }
     }
     async calcMonth(e) {
@@ -87,6 +110,22 @@ export default class Calc extends React.Component {
             const data = await response.json();
             this.setState({ resCalcMonth: data + ' руб' });
             this.props.values.resCalcMonth = data + ' руб'
+
+            var toDay = new Date()
+            var daysCount = 32 - new Date(this.state.monthCalc.substring(0, 4), this.state.monthCalc.substring(5, 7), 32).getDate();
+            var start = this.state.monthCalc + '-01'
+            var finish = this.state.monthCalc + '-'+daysCount
+            const requestOptions1 = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    StartDate: start,
+                    EndDate: finish
+                })
+            };
+            const response1 = await fetch('/Charge/GetChargesByDate', requestOptions1);
+            const data1 = await response1.json();
+            this.setState({ charges: data1 });
         }
     }
     onStartDateChange(e) {
@@ -123,7 +162,7 @@ export default class Calc extends React.Component {
         return <div >
             <h2>Калькулятор</h2>
             <div className="row calculation">
-                <div className="col-7">
+                <div className="col-6">
                     <div className="calc-tabs">
                         <form onSubmit={this.calcMonth} className="shadow p-4 calc-tab">
                             <h5>Расчет за месяц</h5>
@@ -173,8 +212,38 @@ export default class Calc extends React.Component {
                         </table>
                     </div>
                 </div>
-                <div className="col-5">
-                    Тут будут выводится счета за те месяцы, которые выраны для рассчетов
+                <div className="col-6 calcCharges">
+                    <h4>Начисления за период</h4>
+                    {
+                        this.state.charges.map(function (c) {
+                            return <div className="charge-info shadow charge-table">
+                                <div className="service-company">
+                                    <h6>Адрес: г. {c.charge.property.building.city.name} {c.charge.property.building.street} {c.charge.property.building.buildingNumber} кв. {c.charge.property.apartmentNumber}</h6>
+                                </div>
+                                <div className="charge">
+                                    <h7>Дата начисления: {c.charge.chargeDate.substring(0,10)}</h7>
+                                    <table className="table table-primary">
+                                        <thead>
+                                            <tr>
+                                                <th>Вид платежа</th>
+                                                <th>Кол-во ед. изм.</th>
+                                                <th>Размер платы (руб/ед изм.)</th>
+                                                <th>Начисленно фактически</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{c.charge.service.name}</td>
+                                                <td>{c.charge.volume}</td>
+                                                <td>{c.tariff.value}</td>
+                                                <td>{c.tariff.value * c.charge.volume} руб</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        })
+                    }
                 </div>
             </div>
         </div>;

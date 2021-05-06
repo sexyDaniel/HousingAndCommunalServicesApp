@@ -3,15 +3,17 @@ using System;
 using GKU_App.DataBaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GKU_App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210506125305_add companies for building")]
+    partial class addcompaniesforbuilding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace GKU_App.Migrations
 
             modelBuilder.HasSequence("serial")
                 .StartsAt(100000000L);
-
-            modelBuilder.Entity("BuildingServiceCompany", b =>
-                {
-                    b.Property<int>("BuildingsBuildingId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ServiceCompaniesId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("BuildingsBuildingId", "ServiceCompaniesId");
-
-                    b.HasIndex("ServiceCompaniesId");
-
-                    b.ToTable("BuildingServiceCompany");
-                });
 
             modelBuilder.Entity("GKU_App.Models.Admin", b =>
                 {
@@ -206,6 +193,9 @@ namespace GKU_App.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("BuildingId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -225,6 +215,8 @@ namespace GKU_App.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BuildingId");
 
                     b.HasIndex("ServiceId");
 
@@ -253,21 +245,6 @@ namespace GKU_App.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("Tariffs");
-                });
-
-            modelBuilder.Entity("BuildingServiceCompany", b =>
-                {
-                    b.HasOne("GKU_App.Models.Building", null)
-                        .WithMany()
-                        .HasForeignKey("BuildingsBuildingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GKU_App.Models.ServiceCompany", null)
-                        .WithMany()
-                        .HasForeignKey("ServiceCompaniesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("GKU_App.Models.Building", b =>
@@ -321,6 +298,10 @@ namespace GKU_App.Migrations
 
             modelBuilder.Entity("GKU_App.Models.ServiceCompany", b =>
                 {
+                    b.HasOne("GKU_App.Models.Building", null)
+                        .WithMany("ServiceCompanies")
+                        .HasForeignKey("BuildingId");
+
                     b.HasOne("GKU_App.Models.Service", "Service")
                         .WithMany("ServiceCompanies")
                         .HasForeignKey("ServiceId")
@@ -352,6 +333,8 @@ namespace GKU_App.Migrations
             modelBuilder.Entity("GKU_App.Models.Building", b =>
                 {
                     b.Navigation("Properties");
+
+                    b.Navigation("ServiceCompanies");
                 });
 
             modelBuilder.Entity("GKU_App.Models.City", b =>
