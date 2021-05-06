@@ -10,33 +10,33 @@ export default class DownloadCharges extends React.Component {
         this.onFileChange = this.onFileChange.bind(this)
     }
     onFileChange(e) {
-        this.setState({ File: e.target.value })
+        console.log(e.target.files[0])
+        this.setState({ File: e.target.files })
     }
     async sendFile(e) {
         e.preventDefault();
         console.log(this.state.File)
-            //const requestOptions = {
-            //    method: 'POST',
-            //    headers: { 'Content-Type': 'application/json' },
-            //    body: JSON.stringify({
-            //        Login: this.state.Login,
-            //        Password: this.state.Password
-            //    })
-            //};
-            //const response = await fetch('/Authorization/AdminAuthorization', requestOptions);
-            //const data = await response.json();
-            //console.log(data)
-            //if (date.IsSuccessfull) {
-            //    document.location.href = "/admin/addCharges"
-            //} else {
-            //    alert(data.Errors[0])
-            //}
+        var f = new FormData();
         
+        f.append("File", this.state.File[0])
+        const requestOptions = {
+            type: 'uploadAll',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': '*/*'
+            },
+            body: { uploadedFile:this.state.File[0] }
+        };
+        const response = await fetch('/ChargeCSV/AddNewCSV', requestOptions);
+        const data = await response.json();
+        console.log(data) 
     }
     render() {
         return <div>
             <div className="form shadow">
-                <form onSubmit={this.sendFile}>
+                <h6>Пока не работает</h6>
+                <form onSubmit={this.sendFile} encType="multipart/form-data">
                     <input onChange={this.onFileChange} type="file" className="form-control" placeholder="Загрузить начисления" />
                     <button className="btn btn-primary">Отправить</button>
                 </form>

@@ -33,15 +33,6 @@ export default class Nav extends React.Component {
                     </li>
                 </ul>
             </div>;
-        }else if (this.state.admin === "Admin12345") {
-            return <div>
-                <Link to="/"><div className="nav-logo">Admin</div></Link>
-                <ul className="nav flex-column">
-                    <li className="nav-item">
-                        <NavLink exact to="/admin/addCharges" className="link" activeClassName="active">Загрузить начисления</NavLink>
-                    </li>
-                </ul>
-            </div>;
         } else {
             return <div>
                 <Link to="/"><div className="nav-logo">
