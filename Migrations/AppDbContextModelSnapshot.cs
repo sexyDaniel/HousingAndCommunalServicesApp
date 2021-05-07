@@ -22,6 +22,37 @@ namespace GKU_App.Migrations
             modelBuilder.HasSequence("serial")
                 .StartsAt(100000000L);
 
+            modelBuilder.Entity("BuildingServiceCompany", b =>
+                {
+                    b.Property<int>("BuildingsBuildingId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ServiceCompaniesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("BuildingsBuildingId", "ServiceCompaniesId");
+
+                    b.HasIndex("ServiceCompaniesId");
+
+                    b.ToTable("BuildingServiceCompany");
+                });
+
+            modelBuilder.Entity("GKU_App.Models.Admin", b =>
+                {
+                    b.Property<string>("Login")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Salt")
+                        .HasColumnType("text");
+
+                    b.HasKey("Login");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("GKU_App.Models.Building", b =>
                 {
                     b.Property<int>("BuildingId")
@@ -51,19 +82,26 @@ namespace GKU_App.Migrations
 
             modelBuilder.Entity("GKU_App.Models.Charge", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("ChargeDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<int>("PropertyId")
                         .HasColumnType("integer");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("ChargeDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<double>("Volume")
                         .HasColumnType("double precision");
 
-                    b.HasKey("PropertyId", "ServiceId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PropertyId");
 
                     b.HasIndex("ServiceId");
 
@@ -215,6 +253,21 @@ namespace GKU_App.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("Tariffs");
+                });
+
+            modelBuilder.Entity("BuildingServiceCompany", b =>
+                {
+                    b.HasOne("GKU_App.Models.Building", null)
+                        .WithMany()
+                        .HasForeignKey("BuildingsBuildingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GKU_App.Models.ServiceCompany", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceCompaniesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GKU_App.Models.Building", b =>

@@ -23,5 +23,7 @@ namespace GKU_App.Models
         public string Email { get; set; }
         public Service Service { get; set; }
         public int ServiceId { get; set; }
+
+        public List<Building> Buildings { get; set; } = new List<Building>();
     }
 }

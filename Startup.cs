@@ -8,6 +8,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GKU_App.DataBaseContext;
 using GKU_App.Authorization;
+using GKU_App.Services.Interfaces;
+using GKU_App.Services;
+using GKU_App.Models.Repositories;
+using GKU_App.Models.Repositories.Interfaces;
+using GKU_App.GetCharge.Interfaces;
+using GKU_App.GetCharge;
+using GKU_App.CSVParsing.Interfaces;
+using GKU_App.CSVParsing;
+using GKU_App.AdminRepositories;
 
 namespace GKU_App
 {
@@ -23,11 +32,21 @@ namespace GKU_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=pudgehook"));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
 
+            services.AddTransient<ICalculationService, CalcService>();
+            services.AddTransient<ITariffRepository, TariffRepository>();
             services.AddTransient<IOwnerAuthorization, OwnerAuthorization>();
+            services.AddTransient<IDataManipulation, AdminDataManipulation>();
+            services.AddTransient<IChargeRepository, ChargeRepository>();
+            services.AddTransient<IAdminService, AdminService>();
+            services.AddTransient<IParseCharge, ParseCharge>();
+            services.AddTransient<IServiceCompanyRepository, ServiceCompanyRepository>();
 
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+            Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -68,6 +87,7 @@ namespace GKU_App
 
                 if (env.IsDevelopment())
                 {
+                    spa.UseReactDevelopmentServer("start");
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
                 }
             });

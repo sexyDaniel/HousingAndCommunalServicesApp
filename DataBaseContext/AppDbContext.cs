@@ -12,6 +12,7 @@ namespace GKU_App.DataBaseContext
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Charge> Charges { get; set; }
+        public DbSet<Administrator> Admins { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Property> Properties { get; set; }
@@ -21,7 +22,7 @@ namespace GKU_App.DataBaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Charge>().HasKey(c => new { c.PropertyId, c.ServiceId });
+            //modelBuilder.Entity<Charge>().HasKey(c => new { c.PropertyId, c.ServiceId });
             modelBuilder.Entity<Tariff>().HasKey(t => new { t.BuildingId, t.ServiceId });
             modelBuilder.Entity<Owner>(entity =>
             {

@@ -140,10 +140,11 @@ span {
 
 .calculation button {
     margin-top: 10px;
+    display:block !important
 }
 
 .calculation .calc-tab {
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 }
 
 
@@ -161,8 +162,14 @@ span {
 
 
 .calc-tab input {
-    width: 200px !important;
+    width: 180px !important;
     display: inline !important;
+}
+
+.tariffs {
+    margin-top:7px;
+    overflow-y: scroll;
+    max-height: 40vh;
 }
 
 .calc-tabs .calc-tab:nth-child(4) input {
@@ -178,7 +185,7 @@ span {
 .calc-tabs {
     padding-top: 10px;
     overflow-y: scroll;
-    max-height: 90vh;
+    max-height: 50vh;
 }
 
 .charge-tables {
@@ -220,3 +227,13 @@ span {
         padding-right: 100px !important;
         margin-top: 100px !important;
     }
+
+.exit {
+    text-align: center;
+}
+
+.calcCharges {
+    max-height:90vh;
+    overflow:scroll
+}
+
