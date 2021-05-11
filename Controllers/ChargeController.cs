@@ -31,8 +31,7 @@ namespace GKU_App.Controllers
 
             if (HttpContext.Request.Cookies.TryGetValue("currentOwner", out string currentOwner))
             {
-                Property property = ownerCharge.GetProperty(Convert.ToInt32(currentOwner));
-                charges = ownerCharge.GetCharge(property.PropertyId, data.StartDate, data.EndDate);
+                charges = ownerCharge.GetCharge(Convert.ToInt32(currentOwner), data.StartDate, data.EndDate);
                 foreach (KeyValuePair<Charge, Tariff> keyValue in charges)
                 {
                     answer.Add(new ChargeAnswer(keyValue.Key, keyValue.Value));

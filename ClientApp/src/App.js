@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Nav from './components/nav.js';
 import AdminNav from './components/adminNav.js'
-import Home from './components/home.js';
+import Home from './components/Home.js';
 import Charges from './components/charges.js';
 import Calc from './components/calc.js';
 import PersonalNumber from './components/personalNumber.js';
