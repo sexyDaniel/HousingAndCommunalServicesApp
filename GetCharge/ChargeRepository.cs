@@ -20,22 +20,19 @@ namespace GKU_App.GetCharge
             this.dbContext = dbContext;
         }
 
-        public Property GetProperty(int ownerId)
-        {
-            return dbContext.Properties.FirstOrDefault(p => p.OwnerId == ownerId);
-        }
-
-        public Dictionary<Charge, Tariff> GetCharge(int PropertyId, DateTime StartDate, DateTime EndDate)
+        public Dictionary<Charge, Tariff> GetCharge(int ownerId, DateTime StartDate, DateTime EndDate)
         {
             Dictionary<Charge, Tariff> dict = new Dictionary<Charge, Tariff>();
 
-             var charges = dbContext.Charges
+
+            var charges = dbContext.Charges
                 .Include(p => p.Property)
                 .ThenInclude(c => c.Building)
                 .ThenInclude(c => c.City)
                 .Include(p => p.Service)
-                .Where(c => c.PropertyId == PropertyId &&
-                c.ChargeDate >= StartDate && c.ChargeDate <= EndDate)
+                .Join(dbContext.Properties, ch => ch.PropertyId, pr => pr.PropertyId, (ch, pr) => new { ch, pr })
+                .Where(pr => pr.pr.OwnerId == ownerId && pr.ch.ChargeDate >= StartDate && pr.ch.ChargeDate <= EndDate)
+                .Select(pr => pr.ch)
                 .ToArray();
             foreach (var charge in charges)
             {

@@ -8,7 +8,6 @@ namespace GKU_App.GetCharge.Interfaces
 {
     public interface IChargeRepository
     {
-        public Property GetProperty(int ownerId);
-        public Dictionary<Charge, Tariff> GetCharge(int PropertyId, DateTime StartDate, DateTime EndDate);
+        public Dictionary<Charge, Tariff> GetCharge(int ownerId, DateTime StartDate, DateTime EndDate);
     }
 }
