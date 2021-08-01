@@ -12,7 +12,11 @@
 Просмотр всех начислений за выбранный период:
 
 ![Снимок3](https://user-images.githubusercontent.com/62948074/127785499-144a180a-a837-4ae2-be8b-ff4fa4e013b4.PNG)
+
 Калькулятор для расчетов, таблица тарифов и список начислений, по которым производится расчет
+
 ![Снимок4](https://user-images.githubusercontent.com/62948074/127785501-4eb60bce-447c-4caa-86ba-1b10ce5d6d87.PNG)
+
 Список обслуживающих компаний:
+
 ![Снимок5](https://user-images.githubusercontent.com/62948074/127785502-5fc130a1-bb3b-4cd2-a78c-9e64d1aa2eb1.PNG)
